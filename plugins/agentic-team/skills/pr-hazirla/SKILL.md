@@ -7,17 +7,24 @@ allowed-tools: Bash(git:*), Bash(gh:*)
 # PR hazırla
 
 ## Ön kontrol
-- Çalışma dalında olduğunu doğrula (`git branch --show-current`); `main` ise DUR.
-- Testler son çalıştırmada geçti mi? Geçmediyse PR açma.
+- Çalışma dalında olduğunu doğrula (`git branch --show-current`); `main`/`master` veya PR hedef dalının kendisi ise DUR.
+- Testler/doğrulama son çalıştırmada geçti mi? Geçmediyse PR açma.
 - `docs/CHANGELOG.md` güncellendi mi? Güncellenmediyse önce `tech-writer`'a yaptır.
+- **Hedef dal:** `CLAUDE.md`'deki PR hedef dalı (ör. `develop`); belirtilmemişse reponun varsayılan dalı.
 
-## PR'ı aç
+## Dalı gönder
 ```bash
 git push -u origin HEAD
-gh pr create --title "<tür>(<kapsam>): <özet> (#<issue>)" --body-file <geçici-dosya>
 ```
+Push kimlik doğrulama hatası verirse dur ve kullanıcıya söyle (yerelde git'in GitHub girişi yapılmamış olabilir).
 
-PR gövdesi şablonu:
+## PR'ı aç
+- **GitHub MCP varsa:** `github` sunucusunun pull request oluşturma aracıyla; `head` = çalışma dalı, `base` = hedef dal, başlık ve aşağıdaki gövde.
+- **Yoksa `gh` ile:** `gh pr create --base <hedef-dal> --title "<başlık>" --body-file <geçici-dosya>`
+
+Başlık: `<tür>(<kapsam>): <özet> (#<issue>)`
+
+Gövde şablonu:
 ```markdown
 Closes #<issue>
 
@@ -25,7 +32,7 @@ Closes #<issue>
 - …
 
 ## Nasıl test edildi
-- Komut: `<test komutu>` → <sonuç>
+- Komut: `<test/doğrulama komutu>` → <sonuç>
 - QA tablosu: <qa çıktısının özeti>
 
 ## Kod inceleme
@@ -40,9 +47,9 @@ Closes #<issue>
 - [ ] Dokümantasyon yeterli
 ```
 
-`Closes #<issue>` satırı sayesinde PR birleşince issue kapanır ve board'daki iş akışı kartı **Tamam**'a taşır.
+Not: `Closes #<issue>` issue'yu yalnızca PR **varsayılan dala** birleşince otomatik kapatır. Hedef dal varsayılan dal değilse (ör. `develop`), issue `develop` → `main` sürüm birleştirmesinde kapanır; bu beklenen davranıştır.
 
 ## Sonra
-- PR URL'sini issue'ya kısa bir yorumla yaz.
+- PR bağlantısını issue'ya kısa bir yorumla yaz.
 - Board statüsünü **İncelemede** yap (`board-durum`).
 - PR'ı birleştirme veya onaylama; bu insanın işidir.

@@ -36,8 +36,13 @@ Orkestratör bilinçli olarak bir skill'dir: Claude Code'da alt agent'lar başka
 ### Skill'ler
 `/agentic-team:orkestra`, `board-durum`, `adr-yaz`, `gdd-yaz`, `pr-hazirla`, `durum-raporu`, `3d-asset-uret`
 
+### GitHub erişimi
+Ekip GitHub'a iki yoldan biriyle erişir; skill'ler önce MCP'yi dener:
+1. **GitHub MCP** (plugin'de tanımlı): `GITHUB_PAT` ortam değişkeni gerekir. Yerelde en kolayı `~/.claude/settings.json` içine `"env": { "GITHUB_PAT": "ghp_..." }` eklemek (`repo`, `project`, `read:org` kapsamlı classic token). Token'ı asla proje reposundaki dosyalara yazma.
+2. **`gh` CLI**: kuruluysa ve `gh auth refresh -s project` yapılmışsa.
+
 ### Güvenlik
-`guard-git.sh` hook'u agent'ların şunları yapmasını engeller: `main`/`master`'a push, force push, `gh pr merge`, `gh pr review --approve`. Asıl güvence yine de repodaki branch koruma kuralıdır.
+`guard-git.sh` ve `guard-github-mcp.sh` hook'ları agent'ların şunları yapmasını engeller: `main`/`master`'a push veya doğrudan yazma, force push, PR birleştirme, PR onaylama (CLI ve MCP için). Asıl güvence yine de repodaki branch koruma kuralıdır.
 
 ## Kurulum
 

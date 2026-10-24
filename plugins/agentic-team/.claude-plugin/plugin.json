@@ -1,7 +1,7 @@
 {
   "name": "agentic-team",
   "displayName": "Agentic Team",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "GitHub issue'larını gerçek bir üretim ekibi gibi planlayan, uygulayan, test eden, dokümante eden ve board statüsünü güncelleyen rol bazlı agent ekibi.",
   "author": {
     "name": "Umaycho"

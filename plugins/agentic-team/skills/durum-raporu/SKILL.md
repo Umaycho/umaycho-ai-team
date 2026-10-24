@@ -7,9 +7,9 @@ allowed-tools: Bash(gh:*)
 
 1. Board bilgisini `CLAUDE.md`'den al (`owner`, proje numarası).
 2. Öğeleri çek:
-   ```bash
-   gh project item-list <no> --owner <owner> --format json --limit 200
-   ```
+   - **GitHub MCP varsa:** `github` sunucusunun proje öğelerini listeleyen aracıyla (Status alanıyla birlikte).
+   - **Yoksa `gh` ile:** `gh project item-list <no> --owner <owner> --format json --limit 200`
+   - İkisi de olmazsa repo issue'larını açık/kapalı ve etiketlerine göre listeleyerek yaklaşık bir rapor çıkar ve bunu belirt.
 3. Raporu şu sırayla yaz (kısa, taranabilir):
    - **Bir cümlelik özet:** kaç iş açık, kaçı insan bekliyor.
    - **Onayını bekleyenler:** Status = "Onay bekliyor" olanlar; başlık + bağlantı + neyin beklendiği.
