@@ -1,0 +1,16 @@
+{
+  "name": "ai-team",
+  "description": "Agentic AI üretim ekibi: GitHub issue'dan PR'a, dokümantasyon ve board takibiyle çalışan rol bazlı agent'lar.",
+  "owner": {
+    "name": "Umaycho"
+  },
+  "plugins": [
+    {
+      "name": "agentic-team",
+      "source": "./plugins/agentic-team",
+      "description": "Orkestra skill'i + 9 uzman agent (mimar, geliştirici, QA, kod inceleme, teknik yazar, oyun tasarımcısı, 3D sanatçı, motor entegratörü, DevOps), board ve doküman skill'leri, git koruma hook'u.",
+      "category": "development",
+      "tags": ["agents", "github", "game-dev", "godot", "workflow"]
+    }
+  ]
+}
